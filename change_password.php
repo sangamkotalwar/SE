@@ -13,17 +13,14 @@ include  ('db.php');
 include('session.php');
 $id=$loggedin_id;
 $_SESSION["mem_id"] = $id;
-	echo $_SESSION["mem_id"];
-if(count($_POST)>0) {
-//$result = mysql_query("SELECT * from member WHERE mem_id='" . $_SESSION["mem_id"] . "'");
+if(count($_POST)>0) 
+{
 $result = mysqli_query($db,"SELECT * from member WHERE mem_id='" . $_SESSION["mem_id"] . "'");
 $row = mysqli_fetch_array($result);
     echo $_SESSION["mem_id"];
     echo $row["password"];
 if($_POST["currentPassword"] == $row["password"]) {
-//mysql_query("UPDATE users set password='" . $_POST["newPassword"] . "' WHERE mem_id='" . $_SESSION["mem_id"] . "'");
 mysqli_query($db,"UPDATE member set password='" . $_POST["newPassword"] . "' WHERE mem_id='" . $_SESSION["mem_id"] . "'");
-//$message = "Password Changed";
 echo  "<div  align='center'>";
 echo  "Password changed successfully. You will be redirected to Login page in <div id=\"timecount\">2</div> <u>seconds.</u>";
 echo  "<p><a  href='index.php'  >Click  here</a>  to  go  back.</p>";
@@ -35,7 +32,6 @@ echo  "</div>";
 <head>
 <title>Change Password</title>
 <link rel="stylesheet" type="text/css" href="styles.css" />
-<!--<link  rel="stylesheet"  type="text/css"  href="style.css"  /> -->
 <script>
 function validatePassword() {
 var currentPassword,newPassword,confirmPassword,output = true;
@@ -71,9 +67,6 @@ return output;
 </script>
 </head>
 <body>
-<!--<div  id="center">
-<div  id="center-set">
-<p  align='center'  style="font-weight:bold;  font-size:20px;  font-family:Segoe  Print;  color:#3498DB;"></p> -->
 <form name="frmChange" method="post" action="" onSubmit="return validatePassword()">
 <div style="width:500px;">
 <div class="message"><?php if(isset($message)) { echo $message; } ?></div>
@@ -99,7 +92,5 @@ return output;
 </table>
 </div>
 </form>
- <!--   </div>
-    </div> -->
 </body>
 </html>

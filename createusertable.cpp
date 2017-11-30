@@ -201,13 +201,23 @@ int main(int argc, char* argv[])
       }
 
         string query;
-        query="SELECT * FROM ";
-        query+=argv[1];
-        query+=" WHERE entity='";
-        query+=argv[argc-2];
-        query+="' AND scope='";
-        query+=argv[argc-1];
-        query+="'";
+
+        if(argv[argc-2]=="general")
+        {
+            query="SELECT * FROM ";
+            query+=argv[1];
+        }
+        else
+        {
+            query="SELECT * FROM ";
+            query+=argv[1];
+            query+=" WHERE entity='";
+            query+=argv[argc-2];
+            query+="' AND scope='";
+            query+=argv[argc-1];
+            query+="'";
+        }
+
         //cout<<query;
         //query+=";
         //mysql_query(&mysql,query.c_str());
@@ -305,8 +315,12 @@ int main(int argc, char* argv[])
                       }
                       temp=row[0];
                       int r=atoi(&temp[0]);
-                      theList1.push_back(res);
-                      theList2.push_back(r);
+
+                      if(res!=0)
+                      {
+                          theList1.push_back(res);
+                          theList2.push_back(r);
+                      }
                       innerAB=0, innerAA=0, innerBB=0;
                       //cout<<"---------------------------------------------------------------------------------------------";
                  }
@@ -329,6 +343,7 @@ int main(int argc, char* argv[])
 
         for(vector<int>::reverse_iterator it= theList2.rbegin(); it != theList2.rend(); ++it)
         {
+
             cout<<*it<<" ";
         }
 

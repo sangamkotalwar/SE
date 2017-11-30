@@ -1,3 +1,13 @@
+<script type="text/javascript">
+    function yoInsert()
+        {
+            alert("Login if you're already a user / register if you're a new user to use this utility!");
+        }
+    function yoUpdate()
+        {
+            alert("Login if you're already a user / register if you're a new user to use this utility!");
+        }
+</script>
 <?php
 include  "logincheck.php";
 ?>
@@ -12,10 +22,10 @@ include  "logincheck.php";
 <header>
 <nav>
 <ul>
-     <form action=""  method="POST">
+     <form action="./SearchQuery.php"  method="POST">
      <li><input  name="submit"  type="submit"  value="Search"  id="st-btn"/></li>
-     <li><input  name="submit"  type="submit"  value="Insert"  id="st-btn"/></li>
-     <li><input  name="submit"  type="submit"  value="Update"  id="st-btn"/></li>
+     <li><input  name="submit"  type="submit"  value="Insert"  id="st-btn" onclick="yoInsert();"/></li>
+     <li><input  name="submit"  type="submit"  value="Update"  id="st-btn"/ onclick="yoUpdate();"></li>
     </form>
 </ul>
 </nav>
@@ -68,13 +78,12 @@ include  "logincheck.php";
 </table>
        <div  id="st"><input  name="submit"  type="submit"  value="Submit"  id="st-btn"/></div>
 </form>
-<!--<div  id="reg-bottom"  class="btmrg">Copyright  &copy;  2017  Team GS</div>-->
 </div>
 </div>
 
 <div  id="login">
 <div  id="login-st">
-<form  action=""  method="POST"  id="signin"  id="reg">
+<form  action=""  method="POST"  id="signin">
    <?php
    $remarks  =  isset($_GET['remark_login'])  ?  $_GET['remark_login']  :  '';
      if  ($remarks==null  and  $remarks=="")
@@ -98,8 +107,6 @@ include  "logincheck.php";
 </table>
        <div  id="st"><input  name="submit"  type="submit"  value="Login"  id="st-btn"/></div>
 </form>
-<!--<div  id="reg-bottom"  class="btmrg">Copyright  &copy;  2017 Team GS</div>-->
-      <!-- </form> -->
 </div>
 </div>
 </div>

@@ -6,21 +6,23 @@ include('session.php');
 <head>
 <meta  content='text/html;  charset=UTF-8'  http-equiv='Content-Type'/>
 <link  rel="stylesheet"  type="text/css"  href="style.css"  />
-<title>Yo Bros</title>
+<title>Code Utility Software</title>
 </head>
 <body>
 <header>
 <nav>
 <ul>
-     <form action="./welcome.php"  method="POST">
-     <li><input  name="submit"  type="submit"  value="My Profile"  id="st-btn"/></li>
-    </form>
+
+     <li><form action="./welcome.php"  method="POST"><input  name="submit"  type="submit"  value="My Profile"  id="st-btn"/> </form></li>
+
+    <li><form action="./Searchse.php"  method="POST"><input  name="submit"  type="submit"  value="Search"  id="st-btn"/></form></li>
 </ul>
 </nav>
 </header>
 <div  id="center">
 <div  id="center-set">
-<p  align='center'  style="font-weight:bold;  font-size:20px;  font-family:Segoe  Print;  color:#3498DB;"> Yo Man! This is SE Project man!</p>
+<p  align='center'  style="font-weight:bold;  font-size:20px;  font-family:Segoe  Print;  color:#3498DB;"> Code Utility Software. Insert your code here.</p>
+
 <div  id="signup">
 <div  id="signup-st">
  <div  align="center">
@@ -41,25 +43,32 @@ include('session.php');
 ?>
        </div>
 <form  name="reg"  action="./executeInsert.php"  onsubmit="return  validateForm()"  method="post"  id="reg">
+<!--<form>-->
 <table  border="0"  align="center"  cellpadding="2"  cellspacing="0">
 
    <tr>
-       <td  class="t-1"><div  align="left"  id="tb-name">Entity: </div></td>
+       <td  class="t-1">
+       <div  align="left"  id="tb-name">Entity: </div>
+<!--      <label for="entityX">Entity</label>-->
+       </td>
        <td  width="171" style="color:#fff;">
-         <select form="reg" name="entity">
-          <option value="task" selected="selected">Task</option>
-          <option value="class">Class</option>
+         <select form="reg" name="entity" style=" text-align-last: center; height: 25px; width : 205px;" id="entityX" >
+          <option value="task" selected="selected" class="task">Task</option>
           <option value="datatype">Data Type</option>
-          <option value="Yoman">YOman</option>
+          <option value="class">Class</option>
+          <option value="package">Package</option>
+          <option value="metod">Method</option>
+          <option value="error">Error</option>
          </select>
        </td>
    </tr>
    <tr>
-       <td  class="t-1"><div  align="left"  id="tb-name">Scope: </div></td>
+       <td  class="t-1"><div  align="left"  id="tb-name">Scope: </div>
+       </td>
        <td  width="171" style="color:#fff;">
-         <select form="reg" name="scope">
+         <select form="reg" name="scope" style="height: 25px; width : 205px; text-align-last : center;">
            <!-- <option value="select"> Select </option>  -->
-          <option value="public">Publlic</option>
+          <option value="public">Public</option>
           <option value="private" selected="selected">Private</option>
          </select>
        </td>

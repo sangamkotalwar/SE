@@ -1,5 +1,5 @@
 <?php
-
+//Data displaying code
 include('session.php');
 //session_start();
 include('db.php');
@@ -17,9 +17,9 @@ if (!$query) {
 ?>
 <html>
 <head>
-	<title>Displaying MySQL Data in HTML Table</title>
+	<title>Displaying personal database</title>
 	<style type="text/css">
-        
+
 		body {
 			font-size: 15px;
 			color: #343d44;
@@ -120,13 +120,15 @@ nav  li:hover{color:#fff;background-color:#3498DB;  transition:1s;}
 <header>
 <nav>
 <ul>
-     <form action="./welcome.php"  method="POST">
-     <li><input  name="submit"  type="submit"  value="My Profile"  id="st-btn"/></li>
-    </form>
+
+     <li style="margin-top : -7px; margin-bottom : 30px;"><form action="./insert.php"  method="POST"><input  name="submit"  type="submit"  value="Insert"  id="st-btn"/></form></li>
+     <li style="margin-top : -7px; margin-bottom : 30px;">  <form action="./welcome.php"  method="POST" ><input  name="submit"  type="submit"  value="My Profile"  id="st-btn"/> </form></li>
+     <li style="margin-top : -7px;"><form action="./Searchse.php"  method="POST"><input  name="submit"  type="submit"  value="Search"  id="st-btn"/></form></li>
+
 </ul>
 </nav>
 </header>
-<h1 style="text-align:center;">Personal Database</h1>
+<h1 style="text-align:center; padding-right:250px;">Personal Database</h1>
 	<table class="data-table">
 		<caption class="title" style="text-align:center;">Table</caption>
 		<thead>
@@ -145,7 +147,6 @@ nav  li:hover{color:#fff;background-color:#3498DB;  transition:1s;}
 		$total 	= 0;
 		while ($row = mysqli_fetch_array($query))
 		{
-			//$amount  = $row['amount'] == 0 ? '' : number_format($row['amount']);
 			echo '<tr>
 					<td>'.$no.'</td>
 					<td>'.$row['entity'].'</td>

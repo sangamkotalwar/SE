@@ -7,16 +7,13 @@ $_SESSION["mem_id"] = $id;
 $uname="SELECT * FROM member WHERE mem_id='$id'"; 
 $yoman=mysqli_query($db,$uname);
 $row=mysqli_fetch_assoc($yoman);
-
-//$result  =  mysqli_query($db,"SELECT  *  FROM " . $row["username"] . "");
-//$row2 = mysqli_fetch_array($result);
 ?>
 <!DOCTYPE  html>
 <html>
 <head>
 <meta  content='text/html;  charset=UTF-8'  http-equiv='Content-Type'/>
 <link  rel="stylesheet"  type="text/css"  href="style.css"  />
-<title>Yo Bros</title>
+<title>Code Utility Software</title>
 </head>
 <body>
 <header>
@@ -24,13 +21,14 @@ $row=mysqli_fetch_assoc($yoman);
 <ul>
      <form action="./welcome.php"  method="POST">
      <li><input  name="submit"  type="submit"  value="My Profile"  id="st-btn"/></li>
+     <li><form action="./Searchse.php"  method="POST"><input  name="submit"  type="submit"  value="Search"  id="st-btn"/></form></li>
     </form>
 </ul>
 </nav>
 </header>
 <div  id="center">
 <div  id="center-set">
-<p  align='center'  style="font-weight:bold;  font-size:20px;  font-family:Segoe  Print;  color:#3498DB;"> Yo Man! This is SE Project man!</p>
+<p  align='center'  style="font-weight:bold;  font-size:20px;  font-family:Segoe  Print;  color:#3498DB;"> Code Utility Software. Update your profile here!</p>
 <div  id="signup">
 <div  id="signup-st">
  <div  align="center">
@@ -69,10 +67,6 @@ $row=mysqli_fetch_assoc($yoman);
        <td><!--<input  type="text"  id="tb-box"  name="username" placeholder="Username" />-->
        <label for="t-1" style="position:relative; color:#FFF;"><?php echo $row['username']; ?></label></td>
    </tr>
-<!-- <tr>
-       <td  class="t-1"><div  align="left"  id="tb-name">Password:</div></td>
-       <td><input  id="tb-box"  type="password"  name="password"  /></td>
-   </tr>-->
 </table>
        <div  id="st"><input  name="submit"  type="submit"  value="Submit"  id="st-btn"/></div>
 </form>

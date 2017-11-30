@@ -26,10 +26,6 @@ description LONGTEXT NOT NULL
 )");
     
     mysqli_query($db,"INSERT  INTO  member(fname,  lname,  address,username,  password)VALUES('$fname',  '$lname','$address',  '$username',  '$password')");
-//$_SESSION["username"] = $username;
-  //  echo $username;
-
-    //echo "Table created successfully";
 header("location:  index.php?remarks=success");
 }
 ?>

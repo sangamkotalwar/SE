@@ -6,22 +6,14 @@ include('session.php');
 <head>
 <meta  content='text/html;  charset=UTF-8'  http-equiv='Content-Type'/>
 <link  rel="stylesheet"  type="text/css"  href="style.css"  />
-<title>Yo Bros!</title>
+<title>Code Utility Software</title>
 </head>
 <body>
 <header>
 <nav>
 <ul>
-<!--
-     <form action="./insert.php"  method="POST">
-     <li><input  name="submit"  type="submit"  value="Insert"  id="st-btn"/></li>
-     </form>
--->
    <li><form action="./insert.php"  method="POST"><input  name="submit"  type="submit"  value="Insert"  id="st-btn"/></form></li>
-   <li><form action="./insert.php"  method="POST"><input  name="submit"  type="submit"  value="Search"  id="st-btn"/></form></li>
-    <!--<form action="#"  method="POST">
-     <li><input  name="submit"  type="submit"  value="Search"  id="st-btn"/></li>
-    </form>-->
+   <li><form action="./Searchse.php"  method="POST"><input  name="submit"  type="submit"  value="Search"  id="st-btn"/></form></li>
 </ul>
 </nav>
 </header>
@@ -29,7 +21,7 @@ include('session.php');
 <div  id="center-set">
 <p  align='center'  style="font-weight:bold;  font-size:20px;  font-family:Segoe  Print;  color:#3498DB;"></p>
 <h1  align='center'>Welcome  <?php  echo  $loggedin_session;  ?>,</h1>
-<p  align='center'>  You  are  now  logged  in.  you  can  logout  by  clicking  on  signout  link  given  below.</p>
+<p  align='center'>  You  are  now  logged  in to Code Utility Software.  you  can  logout  by  clicking  on  signout  link  given  below.</p>
 <div  id="contentbox">
 <?php
 include('db.php');
@@ -63,7 +55,7 @@ while($rows=mysqli_fetch_array($result)){
 </div>
 <div  id="login">
 <div  id="login-sg">
-<div  id="st"><a  href="Directory.php" id="st-btn">Directory</a></div>
+<div  id="st"><a  href="delDirec.php" id="st-btn">Directory</a></div>
 <div  id="st"><a  href="displaying_data.php" id="st-btn">Personal Database</a></div>
 <div  id="st"><a  href="update.php" id="st-btn">Update Profile</a></div>
 <div  id="st"><a  href="logout.php"  id="st-btn">Sign  Out</a></div>
@@ -72,17 +64,15 @@ while($rows=mysqli_fetch_array($result)){
 </div>
 </div>
 <?php
-//  close  while  loop
 }
 ?>
 </div>
 </div>
 </div>
 <?php
-//  close  connection;
 mysqli_close($db);
 ?>
-</br>
+<br/>
 <div  id="footer">
 <p>Copyright  &copy;  2017 Team GS</p>
 </div>

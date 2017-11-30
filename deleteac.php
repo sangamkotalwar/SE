@@ -22,11 +22,8 @@ setInterval(function(){  countdown();  },1000);
 <?php
 include  ('db.php');
 $id=$loggedin_id;
-$deltable="SELECT username FROM member WHERE mem_id='$id'";
-   
+$deltable="SELECT username FROM member WHERE mem_id='$id'";   
     $yoman=mysqli_query($db,$deltable);
-    //echo $unameretrival;
-   
     $row=mysqli_fetch_assoc($yoman);
     $deletbl="DROP TABLE " . $row["username"] . " ";
     mysqli_query($db,$deletbl);
@@ -37,7 +34,6 @@ echo  "<div  align='center'>";
 echo  "Account Deleted Successfully. You will be redirected to main page in <div id=\"timecount\">10</div> <u>seconds.</u>";
 echo  "<p><a  href='index.php'  >Click  here</a>  to  go  back.</p>";
 echo  "</div>";
-//session_start();
 }
 elseif(!isset($loggedin_session)  ||  $loggedin_session==NULL)
 {
@@ -48,7 +44,6 @@ echo  "Unable  to  delete  Your  Account";
 }
 ?>
 <?php
-//  close  connection
 mysqli_close($db);
 ?>
 </div>

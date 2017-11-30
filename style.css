@@ -31,3 +31,8 @@ td.t-2{  float:right;  width:55%;  }
 #login-sg{  margin-top:20%;    }
 #footer{background-color:#fff;  width:100%;  height:50px;  margin:0px;  float:left;    border-top:5px  solid  #3498DB;}
 #footer  p{text-align:center;  font-size:18px;  font-weight:bold;  color:#3498DB;}
+field { font-family:arial, sans-serif; border-color: #d9d9d9; border-top:solid 1px #c0c0c0; } 
+input.field{width:50px;}
+.fieldwrapper{
+white-space: nowrap;
+}

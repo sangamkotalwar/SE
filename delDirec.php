@@ -1,4 +1,6 @@
-<script type="text/javascript">
+<!-- directory page -->
+   <script type="text/javascript">
+    //To delete a query
 function Deleteqry(id)
 { 
   if(confirm("Are you sure you want to delete this row?")==true)
@@ -36,6 +38,7 @@ if (!$result)
 <ul>
    <li style="margin-top:3px"><form action="./welcome.php" method="POST"><input  name="submit"  type="submit"  value="My Profile" id="st-btn"/></form></li>
    <li style="margin-top:3px"><form action="./insert.php"  method="POST"><input  name="submit"  type="submit"  value="Insert"  id="st-btn"/></form></li>
+   <li style="margin-top:3px"><form action="./Searchse.php"  method="POST"><input  name="submit"  type="submit"  value="Search"  id="st-btn"/></form></li>
 </ul>
 </nav>
 </header>
@@ -44,7 +47,7 @@ if (!$result)
 <div  id="signup">
 <div  id="signup-st" style="overflow-x : auto; background-color : #FFF" >
     <div  align="center"> <?php echo  '<div  id="reg-head"  class="headrg" style="background-color : #000" >Your Directory</div>'; ?> </div>
-<!--<form  name="reg"  action="execute.php"  onsubmit="return  validateForm()"  method="post"  id="reg"> -->
+
 <table  border="2"  align="center"  cellpadding="3"  cellspacing="2">
     <?php
         if (mysqli_num_rows($result) > 0) {
@@ -55,11 +58,7 @@ if (!$result)
             echo '<tr>';
             echo '<td style="background-color : #3498DB;">';
             echo '<form method="post">';
-        /*echo '<td>';
-            echo  $row["title"]; echo '</td>';*/
-        //echo "&nbsp;&nbsp;&nbsp;&nbsp;";
-        //echo  '<input type="submit" name="get_data" value="'.$row["title"].'"></form><br><pre></pre>'. $row["description"]. "<br><br>";
-        echo  '<input type="submit" id="st-btn" name="get_data" value="'.$row["title"].'"></form>';
+            echo  '<input type="submit" id="st-btn" name="get_data" value="'.$row["title"].'"></form>';
             echo '</td>';
             echo '<td>';
             echo '<pre>'.$row["description"].'</pre>';
@@ -71,9 +70,7 @@ if (!$result)
         }
     ?>
 </table>
-<!--<div  id="st"><input  name="submit"  type="submit"  value="Submit"  id="st-btn"/></div>-->
-<!-- </form> -->
-<!--<div  id="reg-bottom"  class="btmrg">Copyright  &copy;  2017  Team GS</div>-->
+
 </div>
 </div>
 <div  id="login">
@@ -81,7 +78,7 @@ if (!$result)
 <div  align="center"> <?php echo  '<div  id="reg-head"  class="headrg" style="background-color : #000" >Overview</div>'; 
 echo '<div  id="reg-bottom" style="border-top: 0px solid #A2DED0;">
 <nav style="border-top: 0px solid #A2DED0;">
-       <li style="width: 331px; padding :0px; background-color:#3498DB"><form action="./executeOnShare.php"  method="POST"><input type="text" name="sharename"/><input name="submit"  type="submit" value="Share" id="st-btn"/></form></li>
+       <li style="width: 331px; padding :0px; background-color:#3498DB"><form action=""  method="POST"><input type="text" name="sharename" required = "required"/><input  name="sharebtn"  type="submit"  value="Share"  id="st-btn"/></form></li>
 </nav>
 </div>';
 
@@ -110,19 +107,22 @@ echo '<div id="reg-bottom" style="border-top: 0px solid #A2DED0; margin-right : 
 <?php 
     if(isset($_POST['get_data']))
 {
-    //echo $_POST['get_data'];
-    $sql = "SELECT id, title, codesnippet, description FROM " . $row2["username"] . " WHERE title = '".mysqli_real_escape_string($db, $_POST['get_data'])."'";
+    $sql = "SELECT title, codesnippet, description FROM " . $row2["username"] . " WHERE title = '".mysqli_real_escape_string($db, $_POST['get_data'])."'";
     $result_1 = mysqli_query($db, $sql);
     if (mysqli_num_rows($result_1) > 0) 
     {
     // output data of each row
-    while($row = mysqli_fetch_assoc($result_1)) 
+    //while($row = mysqli_fetch_assoc($result_1)) 
     {
+        $row = mysqli_fetch_assoc($result_1);
         echo "<b>Title</b> : ".$row["title"].'<br><br>';
         echo "<b>Code Snippet</b>: <br>".'<pre>'.htmlspecialchars($row["codesnippet"]).'</pre><br><br>';
         echo "<b>Description</b>: <br>".'<pre>'.$row["description"].'</pre><br><br>';
        
-    }        
+    }  
+        //Share utility
+      $_SESSION["shtitle"] = $row["title"];
+      $_SESSION["shdescription"] = $row["description"];     
     }
     
     if(isset($_POST['get_data']))  
@@ -131,12 +131,46 @@ echo '<div id="reg-bottom" style="border-top: 0px solid #A2DED0; margin-right : 
         $_POST = array();
     }
 }
+    //Share utility
+    if(isset($_POST['sharename']))
+    {
+     
+        $sql="SELECT * FROM ".$_POST['sharename']." WHERE title='".$_SESSION['shtitle']."'AND description='".$_SESSION['shdescription']."'";
+        $result2 = mysqli_query($db, $sql);
+        if($result2)
+        {
+            $counter = mysqli_num_rows($result2);
+        
+        if (mysqli_num_rows($result2)>0)
+        {
+            echo "This data is already present";
+        }
+        else
+        {
+            $sql11="SELECT * FROM ".$row2["username"]."  WHERE title='".$_SESSION['shtitle']."' AND description= '".$_SESSION['shdescription']."'";
+           
+            $result3= mysqli_query($db, $sql11);
+            $row11 = mysqli_fetch_assoc($result3);
+          
+            $sql1='INSERT INTO '.$_POST["sharename"].' ( entity, scope, title, codeSnippet, description) VALUES ("'.mysqli_real_escape_string($db, $row11["entity"]).'", "'.mysqli_real_escape_string($db, $row11["scope"]).'", "'.mysqli_real_escape_string($db, $row11["title"]).'", "'.mysqli_real_escape_string($db, $row11["codeSnippet"]).'", "'.mysqli_real_escape_string($db, $row11["description"]).'")'; 
+                     
+            if($res = mysqli_query($db, $sql1))
+            {
+                echo "Data Inserted";
+              
+            }
+            else
+            {
+                echo("Error description: " . mysqli_error($db));
+            }
+            
+        }
+        }
+     else echo "Username doest not exist";
+   
+    }
 ?>
-
-
-      <!-- </form> -->
 </div>
-
 </div>
 </div>
 </div>
